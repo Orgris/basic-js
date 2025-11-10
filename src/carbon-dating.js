@@ -21,18 +21,16 @@ function dateSample(sampleActivity) {
   if (typeof sampleActivity !== 'string') {
     return false
   }
-
   const a = parseFloat(sampleActivity)
 
-  if (a <= 0 || isFinite(a) || isNaN(a)) {
+  if (!a || a <= 0 || a > MODERN_ACTIVITY || isNaN(a)) {
     return false
-  } else {
-    const a0 = MODERN_ACTIVITY
-    const n = a
-    const n0 = a0
-    const k = 0.693 / HALF_LIFE_PERIOD
-    const t = Math.ceil(Math.log(n0 / n) * k)
   }
+  const a0 = MODERN_ACTIVITY
+  const n = a
+  const n0 = a0
+  const k = 0.693 / HALF_LIFE_PERIOD
+  const t = Math.ceil(Math.log(n0 / n) / k)
   return t
 }
 
